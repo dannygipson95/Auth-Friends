@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {axiosWithAuth} from '../utils/axiosWithAuth';
+import Friend from './friend'
 
 function FriendsList(){
     const [friendsList, setFriendsList] = useState([]);
@@ -17,18 +18,19 @@ function FriendsList(){
     return(
         <div>
             <h1>Friends:</h1>
-            <ul>
-                {friendsList.map(friend=>{
-                    return (
-                        <li>{friend.name}
-                            <ul>
-                                <li>age: {friend.age}</li>
-                                <li>email: {friend.email}</li>
-                            </ul>
-                        </li>
+            <table>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Edit/Delete</th>
+                </tr>
+                {friendsList.map((friend, index)=>{
+                    return(
+                        <Friend key={friend.name} index={index} friendsList={friendsList} friend={friend}/>
                     )
                 })}
-            </ul>  
+            </table>
         </div>
 
     )
